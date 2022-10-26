@@ -1,0 +1,148 @@
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    setlocale(0, "");
+    int a;
+    int b;
+    int c;
+    int _long;
+    char texture;
+    
+    while(true) {
+        cout << "[+] Программа - “Геометрические фигуры” \n";
+        cout << "\n";
+        cout << "[1] Линия \n";
+        cout << "[2] Квадрат \n";
+        cout << "[3] Прямоугольник \n";
+        cout << "[+]  Выберите фигуру: "; cin >> a;
+        switch (a)
+        {
+        case 1:
+            cout << "[+] Фигура: “Линия” \n";
+            cout << "\n";
+            cout << "[1] Горизонтальная \n";
+            cout << "[2] Вертикальная \n";
+            cout << "\n";
+            cout << "[+]  Выберите тип: "; cin >> b;
+            switch (b)
+            {
+            case 1:
+                cout << "[+] Длина линии: "; cin >> _long;
+                cout << "\n";
+                cout << "[+] Текстура линии: "; cin >> texture;
+                
+
+                break;
+            case 2:
+                cout << "[+] Длина линии: "; cin >> _long;
+                cout << "\n";
+                cout << "[+] Текстура линии: "; cin >> texture;
+            default:
+                break;
+            }
+            while (_long > 0) {
+                cout << "\x1b[91m";
+                if (b == 1) {
+                    cout << texture;
+                    _long--;
+                }
+                else if (b == 2) {
+                    cout << texture << endl;
+                    _long--;
+                }
+                cout << "\x1b[0m";
+            }
+            cout << endl;
+            break;
+        case 2:
+            cout << "[+] Фигура: “Квадрат” \n";
+            cout << "\n";
+            cout << "[1] Заполненный \n";
+            cout << "[2] Пустой \n";
+            cout << "\n";
+            cout << "[+]  Выберите тип: "; cin >> b;
+            switch (b)
+            {
+            case 1:
+                cout << "[+] Размер: "; cin >> _long;
+                cout << "\n";
+                cout << "[+] Текстура линии: "; cin >> texture;
+                for (int bufer1 = _long; bufer1 > 0; bufer1--) {
+
+                    cout << endl;
+
+                    for (int bufer2 = _long; bufer2 > 0; bufer2--) {
+
+                        cout << "\x1b[91m";
+                       
+                            cout << texture << " ";
+
+                        cout << "\x1b[0m";
+                    }
+
+                }
+                cout << endl;
+
+                break;
+            case 2:
+                cout << "[+] Размер: "; cin >> _long;
+                cout << "\n";
+                cout << "[+] Текстура линии: "; cin >> texture;
+                for (int bufer1 = _long; bufer1 > 0; bufer1--) {
+
+                    cout << endl;
+                    int border;
+                    if (bufer1 == 1 || bufer1 == _long) {
+                         border = 0 ;
+                    }
+                    else {
+                        border = 1;
+                    }
+                    for (int bufer2 = _long; bufer2 > 0; bufer2--) {
+
+                        cout << "\x1b[91m";
+                        if (border == 0) {
+                            cout << texture << " ";
+                        }
+                        if (border == 1) {
+                            if (bufer2 == 1 || bufer2 == _long) {
+                                cout << texture << " ";
+                            }
+                            if (bufer2 > 1 && bufer2 < _long) {
+                                cout << "  ";
+                            }
+                        }
+                            
+
+                        cout << "\x1b[0m";
+                    }
+
+                }
+                cout << endl;
+            default:
+                break;
+            }
+
+            break;
+        case 3:
+            cout << "[+] Фигура: “Прямоугольник” \n";
+            cout << "\n";
+            cout << "[1] Заполненный \n";
+            cout << "[2] Пустой \n";
+            cout << "\n";
+            cout << "[+]  Выберите тип: "; cin >> b;
+
+            break;
+        default:
+            break;
+        }
+        
+    }
+
+
+    
+}
+
