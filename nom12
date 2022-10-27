@@ -1,24 +1,30 @@
-
 #include <iostream>
 using namespace std;
 
 int main()
 {
     setlocale(0, "");
-    int a;
-    int b;
-    int c;
+    int formaFigures;
+    int line;
+    int square;
+    int tectangle;
+    int triangle;
     int _long;
+    int width;
+    int count;
+    int widthExample1 ;
+    int widthExample2;
     char texture;
-    
-    while(true) {
+
+    while (true) {
         cout << "[+] Программа - “Геометрические фигуры” \n";
         cout << "\n";
         cout << "[1] Линия \n";
         cout << "[2] Квадрат \n";
         cout << "[3] Прямоугольник \n";
-        cout << "[+]  Выберите фигуру: "; cin >> a;
-        switch (a)
+        cout << "[4] Треугольник \n";
+        cout << "[+]  Выберите фигуру: "; cin >> formaFigures;
+        switch (formaFigures)
         {
         case 1:
             cout << "[+] Фигура: “Линия” \n";
@@ -26,30 +32,31 @@ int main()
             cout << "[1] Горизонтальная \n";
             cout << "[2] Вертикальная \n";
             cout << "\n";
-            cout << "[+]  Выберите тип: "; cin >> b;
-            switch (b)
+            cout << "[+]  Выберите тип: "; cin >> line;
+            switch (line)
             {
             case 1:
                 cout << "[+] Длина линии: "; cin >> _long;
                 cout << "\n";
                 cout << "[+] Текстура линии: "; cin >> texture;
-                
+                system("cls");
 
                 break;
             case 2:
                 cout << "[+] Длина линии: "; cin >> _long;
                 cout << "\n";
                 cout << "[+] Текстура линии: "; cin >> texture;
+                system("cls");
             default:
                 break;
             }
             while (_long > 0) {
                 cout << "\x1b[91m";
-                if (b == 1) {
+                if (line == 1) {
                     cout << texture;
                     _long--;
                 }
-                else if (b == 2) {
+                else if (line == 2) {
                     cout << texture << endl;
                     _long--;
                 }
@@ -63,13 +70,14 @@ int main()
             cout << "[1] Заполненный \n";
             cout << "[2] Пустой \n";
             cout << "\n";
-            cout << "[+]  Выберите тип: "; cin >> b;
-            switch (b)
+            cout << "[+]  Выберите тип: "; cin >> square;
+            switch (square)
             {
             case 1:
                 cout << "[+] Размер: "; cin >> _long;
                 cout << "\n";
                 cout << "[+] Текстура линии: "; cin >> texture;
+                system("cls");
                 for (int bufer1 = _long; bufer1 > 0; bufer1--) {
 
                     cout << endl;
@@ -77,8 +85,8 @@ int main()
                     for (int bufer2 = _long; bufer2 > 0; bufer2--) {
 
                         cout << "\x1b[91m";
-                       
-                            cout << texture << " ";
+
+                        cout << texture << " ";
 
                         cout << "\x1b[0m";
                     }
@@ -86,17 +94,19 @@ int main()
                 }
                 cout << endl;
 
+
                 break;
             case 2:
                 cout << "[+] Размер: "; cin >> _long;
                 cout << "\n";
                 cout << "[+] Текстура линии: "; cin >> texture;
+                system("cls");
                 for (int bufer1 = _long; bufer1 > 0; bufer1--) {
 
                     cout << endl;
                     int border;
                     if (bufer1 == 1 || bufer1 == _long) {
-                         border = 0 ;
+                        border = 0;
                     }
                     else {
                         border = 1;
@@ -115,7 +125,7 @@ int main()
                                 cout << "  ";
                             }
                         }
-                            
+
 
                         cout << "\x1b[0m";
                     }
@@ -133,16 +143,166 @@ int main()
             cout << "[1] Заполненный \n";
             cout << "[2] Пустой \n";
             cout << "\n";
-            cout << "[+]  Выберите тип: "; cin >> b;
+            cout << "[+]  Выберите тип: "; cin >> tectangle;
+            switch (tectangle)
+            {
+            case 1:
+                cout << "[+] Ширина: "; cin >> _long;
+                cout << "\n";
+                cout << "[+] Высота: "; cin >> width;
+                cout << "\n";
+                cout << "[+] Текстура линии: "; cin >> texture;
+                system("cls");
+                for (int bufer1 = width; bufer1 > 0; bufer1--) {
 
-            break;
-        default:
-            break;
+                    cout << endl;
+
+                    for (int bufer2 = _long; bufer2 > 0; bufer2--) {
+
+                        cout << "\x1b[91m";
+
+                        cout << texture << " ";
+
+                        cout << "\x1b[0m";
+                    }
+
+                }
+                cout << endl;
+
+                break;
+            case 2:
+                cout << "[+] Ширина: "; cin >> _long;
+                cout << "\n";
+                cout << "[+] Высота: "; cin >> width;
+                cout << "\n";
+                cout << "[+] Текстура линии: "; cin >> texture;
+                system("cls");
+                for (int bufer1 = width; bufer1 > 0; bufer1--) {
+
+                    cout << endl;
+                    int border;
+                    if (bufer1 == 1 || bufer1 == width) {
+                        border = 0;
+                    }
+                    else {
+                        border = 1;
+                    }
+                    for (int bufer2 = _long; bufer2 > 0; bufer2--) {
+
+                        cout << "\x1b[91m";
+                        if (border == 0) {
+                            cout << texture << " ";
+                        }
+                        if (border == 1) {
+                            if (bufer2 == 1 || bufer2 == _long) {
+                                cout << texture << " ";
+                            }
+                            if (bufer2 > 1 && bufer2 < _long) {
+                                cout << "  ";
+                            }
+                        }
+
+
+                        cout << "\x1b[0m";
+                    }
+
+                }
+                cout << endl;
+            default:
+                break;
+                
+
+            }
+        case 4:
+            cout << "[+] Фигура: “Треугольник” \n";
+            cout << "\n";
+            cout << "[1] Заполненный \n";
+            cout << "[2] Пустой \n";
+            cout << "\n";
+            cout << "[+]  Выберите тип: "; cin >> triangle;
+            switch (triangle)
+            {
+            case 1:
+                cout << "[+] Высота: "; cin >> width;
+                cout << "\n";
+                cout << "[+] Текстура линии: "; cin >> texture;
+                system("cls");
+                 
+                 widthExample1 = width;
+                 widthExample2 = width;
+                for (int bufer1 = width; bufer1 > 0; bufer1--) {
+                    
+                    cout << endl;
+                    widthExample1 = widthExample1 - count;
+                    widthExample2 = widthExample2 + count;
+
+                    for (int bufer2 = width*2-1; bufer2 > 0; bufer2--) {
+                        cout << "\x1b[91m";
+                        
+                        
+
+                        if (bufer2 == widthExample1 || bufer2 == widthExample2 || bufer1 == 1) {
+                            cout << texture << " ";
+                        }
+                        else {
+                            cout << "." << " ";
+                        }
+                        
+                        cout << "\x1b[0m";
+                    }
+
+                }
+                cout << endl;
+
+                break;
+            case 2:
+                cout << "[+] Ширина: "; cin >> _long;
+                cout << "\n";
+                cout << "[+] Высота: "; cin >> width;
+                cout << "\n";
+                cout << "[+] Текстура линии: "; cin >> texture;
+                system("cls");
+                for (int bufer1 = width; bufer1 > 0; bufer1--) {
+
+                    cout << endl;
+                    int border;
+                    if (bufer1 == 1 || bufer1 == width) {
+                        border = 0;
+                    }
+                    else {
+                        border = 1;
+                    }
+                    for (int bufer2 = _long; bufer2 > 0; bufer2--) {
+
+                        cout << "\x1b[91m";
+                        if (border == 0) {
+                            cout << texture << " ";
+                        }
+                        if (border == 1) {
+                            if (bufer2 == 1 || bufer2 == _long) {
+                                cout << texture << " ";
+                            }
+                            if (bufer2 > 1 && bufer2 < _long) {
+                                cout << "  ";
+                            }
+                        }
+
+
+                        cout << "\x1b[0m";
+                    }
+
+                }
+                cout << endl;
+                break;
+            default:
+                break;
+
+
+            }
+
         }
-        
+
+
+
     }
-
-
-    
 }
-
