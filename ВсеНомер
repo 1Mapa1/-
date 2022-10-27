@@ -11,8 +11,7 @@ int main()
     int triangle;
     int _long;
     int width;
-    int count;
-    int widthExample1 ;
+    int widthExample1;
     int widthExample2;
     char texture;
 
@@ -23,6 +22,9 @@ int main()
         cout << "[2] Квадрат \n";
         cout << "[3] Прямоугольник \n";
         cout << "[4] Треугольник \n";
+        cout << "[5] Решетка \n";
+        cout << "[6] Крестик \n";
+        cout << "[7] Плюс \n";
         cout << "[+]  Выберите фигуру: "; cin >> formaFigures;
         switch (formaFigures)
         {
@@ -208,11 +210,12 @@ int main()
 
                 }
                 cout << endl;
+                break;
             default:
                 break;
-                
 
-            }
+
+            } break;
         case 4:
             cout << "[+] Фигура: “Треугольник” \n";
             cout << "\n";
@@ -222,75 +225,52 @@ int main()
             cout << "[+]  Выберите тип: "; cin >> triangle;
             switch (triangle)
             {
+
             case 1:
                 cout << "[+] Высота: "; cin >> width;
                 cout << "\n";
                 cout << "[+] Текстура линии: "; cin >> texture;
                 system("cls");
-                 
-                 widthExample1 = width;
-                 widthExample2 = width;
+                widthExample1 = width + 1;
+                widthExample2 = width - 1;
                 for (int bufer1 = width; bufer1 > 0; bufer1--) {
-                    
                     cout << endl;
-                    widthExample1 = widthExample1 - count;
-                    widthExample2 = widthExample2 + count;
-
-                    for (int bufer2 = width*2-1; bufer2 > 0; bufer2--) {
+                    widthExample1 = widthExample1 - 1;
+                    widthExample2 = widthExample2 + 1;
+                    for (int bufer2 = width * 2 - 1; bufer2 > 0; bufer2--) {
                         cout << "\x1b[91m";
-                        
-                        
-
+                        if (bufer2 >= widthExample1 && bufer2 <= widthExample2 || bufer1 == 1) {
+                            cout << texture << " ";
+                        }
+                        else {
+                            cout << "." << " ";
+                        }
+                        cout << "\x1b[0m";
+                    }
+                }
+                cout << endl;
+                break;
+            case 2:
+                cout << "[+] Высота: "; cin >> width;
+                cout << "\n";
+                cout << "[+] Текстура линии: "; cin >> texture;
+                system("cls");
+                widthExample1 = width + 1;
+                widthExample2 = width - 1;
+                for (int bufer1 = width; bufer1 > 0; bufer1--) {
+                    cout << endl;
+                    widthExample1 = widthExample1 - 1;
+                    widthExample2 = widthExample2 + 1;
+                    for (int bufer2 = width * 2 - 1; bufer2 > 0; bufer2--) {
+                        cout << "\x1b[91m";
                         if (bufer2 == widthExample1 || bufer2 == widthExample2 || bufer1 == 1) {
                             cout << texture << " ";
                         }
                         else {
                             cout << "." << " ";
                         }
-                        
                         cout << "\x1b[0m";
                     }
-
-                }
-                cout << endl;
-
-                break;
-            case 2:
-                cout << "[+] Ширина: "; cin >> _long;
-                cout << "\n";
-                cout << "[+] Высота: "; cin >> width;
-                cout << "\n";
-                cout << "[+] Текстура линии: "; cin >> texture;
-                system("cls");
-                for (int bufer1 = width; bufer1 > 0; bufer1--) {
-
-                    cout << endl;
-                    int border;
-                    if (bufer1 == 1 || bufer1 == width) {
-                        border = 0;
-                    }
-                    else {
-                        border = 1;
-                    }
-                    for (int bufer2 = _long; bufer2 > 0; bufer2--) {
-
-                        cout << "\x1b[91m";
-                        if (border == 0) {
-                            cout << texture << " ";
-                        }
-                        if (border == 1) {
-                            if (bufer2 == 1 || bufer2 == _long) {
-                                cout << texture << " ";
-                            }
-                            if (bufer2 > 1 && bufer2 < _long) {
-                                cout << "  ";
-                            }
-                        }
-
-
-                        cout << "\x1b[0m";
-                    }
-
                 }
                 cout << endl;
                 break;
@@ -298,11 +278,93 @@ int main()
                 break;
 
 
+            } break;
+        case 5:
+            cout << "[+] Фигура: “Решетка” \n";
+            cout << "[+] Размер(нечетное): "; cin >> width;
+            cout << "\n";
+            cout << "[+] Текстура линии: "; cin >> texture;
+            system("cls");
+            for (int bufer1 = width; bufer1 > 0; bufer1--) {
+                cout << endl;
+                for (int bufer2 = width; bufer2 > 0; bufer2--) {
+                    cout << "\x1b[91m";
+                    if (width % 2 == 0) {
+                        cout << "ОШИБКА! ВВЕДИТЕ НЕЧЕТНОЕ ЧИСЛО!!!!  ";
+                        cout << "\x1b[0m";
+                        break;
+                    }
+                    if (bufer1 % 2 == 0 ) {
+                            cout << texture << " ";
+                        }
+                    else if (bufer1 % 2 == 1 && bufer2 % 2 == 0) {
+                            cout << texture << " ";
+
+                        }
+                    else {
+                        cout << "." << " ";
+                        }
+                        cout << "\x1b[0m";
+                    }
+                }
+                cout << endl;
+                break;
+            
+           
+        case 6:
+            cout << "[+] Фигура: “Крестик” \n";
+            cout << "[+] Размер: "; cin >> width;
+            cout << "\n";
+            cout << "[+] Текстура линии: "; cin >> texture;
+            system("cls");
+            for (int bufer1 = 0; bufer1 <  width; bufer1++) {
+                cout << endl;
+                for (int bufer2 = 0; bufer2 <  width; bufer2++) {
+                    cout << "\x1b[91m";
+                    if (bufer1 == bufer2 || bufer2 == width - bufer1-1)  {
+                        cout << texture << " ";
+                    }
+                   
+                    else {
+                        cout << "." << " ";
+                    }
+                    cout << "\x1b[0m";
+                }
+            }
+            cout << endl;
+            break;
+        case 7:
+            cout << "[+] Фигура: “Плюс” \n";
+            cout << "[+] Размер: "; cin >> width;
+            cout << "\n";
+            cout << "[+] Текстура линии: "; cin >> texture;
+            system("cls");
+            for (int bufer1 = 0; bufer1 < width; bufer1++) {
+                cout << endl;
+                for (int bufer2 = 0; bufer2 < width; bufer2++) {
+                    cout << "\x1b[91m";
+
+                    if (width % 2 == 0 && ( bufer2 == width / 2 - 1|| bufer1 == width / 2 -1  )) {
+                        cout << texture << " ";
+                    }
+                    else if (bufer1 == width/2 || bufer2 == width/2) {
+                        cout << texture << " ";
+                    }
+
+                    else {
+                        cout << "." << " ";
+                    }
+                    cout << "\x1b[0m";
+                }
+            }
+            cout << endl;
+            break;
+        default:
+            break;
             }
 
+
+
         }
-
-
-
     }
-}
+
