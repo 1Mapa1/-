@@ -1,0 +1,54 @@
+// ConsoleApplication1.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
+//
+
+#include <iostream>
+using namespace std;
+
+int main()
+{   
+    setlocale(0,"");
+    int arrInt[10] = { 1, 20, 32, 4, 1, 2, 2, 54, 23, 0 };
+    short arrShort[10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+    long arrLong[10] = { 25824, 274570, 34572, 47543745, 174357, 27457, 2769, 5489, 29783, 0 };
+    float arrFloat[10] = { 1.2, 20.2, 32.3, 4.4, 1.6, 2.878, 2.4, 54.56, 23.654, 0.123 };
+    double arrDouble[10] = { 1.32131, 20.23123, 32.3213, 4.3213, 1.3213, 2.213123, 2.645, 54.65464, 2.6543, 0.6548 };
+    char arrChar[10] = { 'f', 'd', 'g', 'h', 'j', 'k', 'l', ';', '1', 212 };
+    bool arrBool[10] = { 1, 0, true, false, 213, -123, 2, 54, false, 0 };
+    string arrString[10] = { "Sglipa", "fghfg", "pola", "chupapi", "muniani", "kek", "fggh", " bvn", "zxc", "ultra" };
+
+    cout << "[+] Массив INT:\n";
+    for (int i = 0; i < size(arrInt) ; i++) {
+        cout << "[ + ] arrInt [ " << i << " ] | значение: " << arrInt[i] << "\n";      
+    }
+    cout << "[+] Массив SHORT:\n";
+    for (int i = 0; i < size(arrShort); i++) {
+        cout << "[ + ] arrShort [ " << i << " ] | значение: " << arrShort[i] << "\n";
+    }
+    cout << "[+] Массив LONG:\n";
+    for (int i = 0; i < size(arrLong); i++) {
+        cout << "[ + ] arrLong [ " << i << " ] | значение: " << arrLong[i] << "\n";
+    }
+    cout << "[+] Массив Float:\n";
+    for (int i = 0; i < size(arrFloat); i++) {
+        cout << "[ + ] arrFloat [ " << i << " ] | значение: " << arrFloat[i] << "\n";
+    }
+    cout << "[+] Массив Double:\n";
+    for (int i = 0; i < size(arrDouble); i++) {
+        cout << "[ + ] arrDouble [ " << i << " ] | значение: " << arrDouble[i] << "\n";
+    }
+    cout << "[+] Массив CHAR:\n";
+    for (int i = 0; i < size(arrChar); i++) {
+        cout << "[ + ] arrChar [ " << i << " ] | значение: " << arrChar[i] << "\n";
+    }
+    cout << "[+] Массив BOOL:\n";
+    for (int i = 0; i < size(arrBool); i++) {
+        cout << "[ + ] arrBool [ " << i << " ] | значение: " << arrBool[i] << "\n";
+    }
+    cout << "[+] Массив STRING:\n";
+    for (int i = 0; i < size(arrString); i++) {
+        cout << "[ + ] arrString [ " << i << " ] | значение: " << arrString[i] << "\n";
+    }
+
+
+}
+
