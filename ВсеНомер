@@ -1,4 +1,35 @@
 #include <iostream>
+#include <algorithm> 
+
+
+int dist(int dim, int r, int c)
+{
+    return std::min(std::min(r, dim - 1 - r), std::min(c, dim - 1 - c));
+}
+
+char point(int dim, int r, int c)
+{
+    if ((dist(dim, r, c) % 2) == 0) return '*';
+    else return ' ';
+}
+
+int main() {
+    int dim = 0;
+    std::cin >> dim;
+
+    for (int r = 0; r < dim; ++r)
+    {
+        for (int c = 0; c < dim; ++c)
+            std::cout << point(dim, r, c);
+        std::cout << std::endl;
+    }
+    return 0;
+}
+
+
+
+
+#include <iostream>
 using namespace std;
 
 int main()
