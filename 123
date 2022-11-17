@@ -1,0 +1,135 @@
+#include <stdlib.h>
+#include <iostream>
+#include <string>
+
+int main()
+{
+    int arr[3][3];
+    int menu;
+    int settings;
+    int change;
+    std::string nameplayer1 = "Игрок 1";
+    std::string nameplayer2 = "Игрок 2";
+    bool offGame = 1;
+    char symbPlayer1 = 'X';
+    char symbPlayer2 = 'O';
+    int colorCount= 0;
+    std::string colorPlayer1 = "\x1b[34mСиний\x1b[34m";
+    std::string colorPlayer2 = "\x1b[34mСиний\x1b[34m";
+    std::string arrColor[2][3]{ {"\x1b[34m","\x1b[31m","\x1b[32m"},{"Синий","Красный","Зеленый"}};
+    setlocale(0,"");
+    std::cout << "\x1b[91m+\x1b[0m \x1b[97m| Игра <<Крестики нолики>>\x1b[0m\n\n";
+
+    std::cout << "\x1b[91m1\x1b[0m \x1b[97m| Начать игру\n";
+    std::cout << "\x1b[91m2\x1b[0m \x1b[97m| Статистика\n";
+    std::cout << "\x1b[91m3\x1b[0m \x1b[97m| Настройка\n";
+    std::cout << "\x1b[91m4\x1b[0m \x1b[97m| Выйти\n\n";
+
+    std::cout << "\x1b[91m>\x1b[0m \x1b[97m| Введите число: \x1b[90m"; std::cin >> menu;
+    while( true){
+        switch (menu)
+        {
+        default:
+            break;
+        case 1:
+            break;
+        case 2:
+            break;
+        case 3:
+            system("cls");
+            offGame = true;
+            std::cout << "\x1b[91m+\x1b[0m \x1b[97m| Настройка игрока\n\n";
+
+            std::cout << "\x1b[91m1\x1b[0m \x1b[97m| Игрок 1\n";
+            std::cout << "\x1b[91m2\x1b[0m \x1b[97m| Игрок 2\n\n";
+
+            std::cout << "\x1b[91m>\x1b[0m \x1b[97m| Ввод: \x1b[90m"; std::cin >> settings;
+            while (true) {
+                switch (settings)
+                {
+                default:
+                    break;
+                case 1:
+                    while (offGame == true) {
+                        system("cls");
+                        std::cout << "\x1b[91m+\x1b[0m \x1b[97m| Настройка игрока\n\n";
+
+                        std::cout << "\x1b[91m1\x1b[0m \x1b[97m| Ник    : " << nameplayer1 << std::endl;
+                        std::cout << "\x1b[91m2\x1b[0m \x1b[97m| Фигура : " << symbPlayer1 << std::endl;
+                        std::cout << "\x1b[91m3\x1b[0m \x1b[97m| Цвет   : " << colorPlayer1 << std::endl << std::endl;
+                        std::cout << "\x1b[91m4\x1b[0m \x1b[97m| Назад  " << std::endl;
+
+                        std::cout << "\x1b[91m>\x1b[0m \x1b[97m| Ввод: \x1b[90m"; std::cin >> change;
+                        switch (change)
+                        {
+                        default:
+                            break;
+                        case 1:
+                            std::cout << "\x1b[91m+\x1b[0m \x1b[97m| Введите новое имя игрока: "; std::cin >> nameplayer1;
+
+                            break;
+                        case 2:
+                            std::cout << "\x1b[91m+\x1b[0m \x1b[97m| Введите новую фигуру игрока: "; std::cin >> symbPlayer1;
+                            break;
+                        case 3:
+                            std::cout << arrColor[0][0] + arrColor[1][0];
+                            for (int i = colorCount; ; ) {
+                                for (int j = colorCount; ;) {
+                                    colorPlayer1 = arrColor[i][j] + arrColor[i+1][j];
+                                }
+                            }
+                            colorCount++;
+                            break;
+                        
+                        }
+                        if (change == 4) { offGame = false; }
+                    }
+                        break;
+                    
+                    
+                case 2:
+                    system("cls");
+                    std::cout << "\x1b[91m+\x1b[0m \x1b[97m| Настройка игрока\n\n";
+
+                    std::cout << "\x1b[91m1\x1b[0m \x1b[97m| Ник    : " << nameplayer2 << " " << settings << std::endl;
+                    std::cout << "\x1b[91m2\x1b[0m \x1b[97m| Фигура : " << symbPlayer2 << std::endl;
+                    std::cout << "\x1b[91m3\x1b[0m \x1b[97m| Цвет   : " << colorPlayer2 << std::endl << std::endl;
+                    std::cout << "\x1b[91m4\x1b[0m \x1b[97m| Назад  : " << std::endl;
+
+                    std::cout << "\x1b[91m>\x1b[0m \x1b[97m| Ввод: \x1b[90m"; std::cin >> change;
+                    switch (change)
+                    {
+                    default:
+                        break;
+                    case 1:
+
+                        break;
+                    case 2:
+
+                        break;
+                    case 3:
+
+                        break;
+                    case 4:
+
+                        break;
+                    }
+                    break;
+                    break;
+                }
+                ;
+                break;
+            }
+            
+        case 4:
+            
+
+            break;
+        }
+    }
+    
+
+
+    
+
+}
