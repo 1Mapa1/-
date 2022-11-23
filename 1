@@ -1,44 +1,48 @@
 #include <stdlib.h>
 #include <iostream>
 #include <string>
-bool CheckWin(std::string arr[3][3])
-{
-    for (int i = 0; i < 3; i++)
-    {
-        if (arr[i][0] == arr[i][1] && arr[i][1] == arr[i][2])
-        {
-            return true;
-        }
-        else if (arr[0][i] == arr[1][i] && arr[1][i] == arr[2][i])
-        {
-            return true;
-        }
-        else if (arr[0][0] == arr[1][1] && arr[2][2] == arr[1][1] || arr[0][2] == arr[1][1] && arr[2][0] == arr[1][1])
-        {
-            return true;
-        }
-        return false;
-    }
-}
+#include <sstream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <string.h>
 int main()
 {
-    std::string arrGame[3][3]{ {"1","2","3"},{"4","5","6"},{"7","8","9"}};
+    std::string arrGame[3][3]{ {"1","2","3"},{"4","5","6"},{"7","8","9"} };
+    std::string infoGame[9];
     int count = 1;
     int menu;
+    std::string a = "";
+    int duble[9];
     bool game = true;
+    bool win = false;
     int settings;
+    int value;
+    srand(time(0));
+    value = (rand()) % 9;
     int playmenu;
     int change;
+    int infoSum = 0;
     std::string nameplayer1 = "Игрок 1";
     std::string nameplayer2 = "Игрок 2";
+    int winPlayer1 = 0;
+    int losePlayer1 = 0;
+    int drawPlayer1 = 0;
+    float scorPlayer1 = 0;
+    int winPlayer2 = 0;
+    int losePlayer2 = 0;
+    int drawPlayer2 = 0;
+    float scorPlayer2 = 0;
     std::string info[9];
     bool offGame = 1;
     bool offMenu = 1;
     std::string symbPlayer1 = "X";
     std::string symbPlayer2 = "O";
     int colorCount = 0;
-    std::string colorPlayer1 = "\x1b[34mСиний\x1b[34m";
-    std::string colorPlayer2 = "\x1b[34mСиний\x1b[34m";
+    std::string color1 = "\x1b[34mСиний\x1b[34m";
+    std::string colorPlayer1 = "\x1b[34m";
+    std::string color2 = "\x1b[34mСиний\x1b[34m";
+    std::string colorPlayer2 = "\x1b[31m";
     std::string arrColor[2][3]{ {"\x1b[34m","\x1b[31m","\x1b[32m"},{"Синий","Красный","Зеленый"} };
     setlocale(0, "");
     while (true) {
@@ -53,10 +57,19 @@ int main()
 
         std::cout << "\x1b[91m>\x1b[0m \x1b[97m| Введите число: \x1b[90m"; std::cin >> menu;
         while (offMenu) {
+            std::string arrGame[3][3]{ {"1","2","3"},{"4","5","6"},{"7","8","9"} };
+            std::string infoGame[9];
+            int duble[9];
+            int infoSum = 0;
+            int count = 1;
             switch (menu)
             {
-            
+
             case 1:
+                nameplayer1 = colorPlayer1 + nameplayer1 + "\x1b[0m";
+                nameplayer2 = colorPlayer2 + nameplayer2 + "\x1b[0m";
+                symbPlayer1 = colorPlayer1 + symbPlayer1 + "\x1b[0m";
+                symbPlayer2 = colorPlayer2 + symbPlayer2 + "\x1b[0m";
                 system("cls");
                 std::cout << "\x1b[91m+\x1b[0m \x1b[97m| Игра <<Крестики нолики>>\x1b[0m\n\n";
                 std::cout << "\x1b[91m1\x1b[0m \x1b[97m| Одиночная игра\n";
@@ -66,6 +79,7 @@ int main()
                 if (playmenu == 3) {
                     offMenu = 0;
                 }
+
                 switch (playmenu)
                 {
                 case 1:
@@ -85,11 +99,139 @@ int main()
                                 std::cout << "\n__________" << std::endl;
                             }
                         }
+
+                        std::cout << "\n\x1b[91m+\x1b[0m \x1b[97m| Информация\n";
+                        for (int i = 0; i < 9; i++)
+                        {
+                            if (infoGame[i] == "")
+                            {
+                                break;
+                            }
+                            std::cout << infoGame[i] << duble[i] << std::endl;
+                        }
+                        int answer;
+
+
+                        if (count % 2 == 1)
+                        {
+                            std::cout << "\n\x1b[91m>\x1b[0m | Ходит " << nameplayer1 << " : ";
+                            std::cin >> answer;
+                            duble[infoSum] = answer;
+                            infoGame[infoSum] = "\x1b[91m+\x1b[0m " + nameplayer1 + " ход на клетку: ";
+                            infoSum++;
+                            answer--;
+                            arrGame[answer / 3][answer % 3] = symbPlayer1;
+                            count++;
+                        }
+                        else
+                        {
+                            std::cout << "\n\x1b[91m>\x1b[0m | Ходит " << nameplayer2 << " : ";
+                            answer = value;
+                            duble[infoSum] = answer;
+                            infoGame[infoSum] = "\x1b[91m+\x1b[0m " + nameplayer2 + " ход на клетку: ";
+                            infoSum++;
+                            answer--;
+                            arrGame[answer / 3][answer % 3] = symbPlayer2;
+                            count++;
+                        }
+                        for (int i = 0; i < 3; i++)
+                        {
+                            if (arrGame[i][0] == arrGame[i][1] && arrGame[i][1] == arrGame[i][2])
+                            {
+                                win = true;
+                            }
+                            else if (arrGame[0][i] == arrGame[1][i] && arrGame[1][i] == arrGame[2][i])
+                            {
+                                win = true;
+                            }
+                            else if (arrGame[0][0] == arrGame[1][1] && arrGame[2][2] == arrGame[1][1] || arrGame[0][2] == arrGame[1][1] && arrGame[2][0] == arrGame[1][1])
+                            {
+                                win = true;
+                            }
+                        }
+                        if (win)
+                        {
+                            if (count % 2 == 0)
+                            {
+                                system("cls");
+                                std::cout << "Победил " << nameplayer1 << std::endl;
+                                std::cout << "Чтобы продолжить нажмите любую кнопку ";
+                                winPlayer1++;
+                                losePlayer2++;
+                                scorPlayer1 += 5;
+                                scorPlayer2 -= 6;
+                                std::string _a;
+                                std::cin >> _a;
+                            }
+                            else
+                            {
+                                system("cls");
+                                std::cout << "Победил " << nameplayer2 << std::endl;
+                                std::cout << "Чтобы продолжить нажмите любую кнопку ";
+                                winPlayer2++;
+                                losePlayer1++;
+                                scorPlayer2 += 5;
+                                scorPlayer1 -= 6;
+                                std::string _a;
+                                std::cin >> _a;
+                            }
+                            win = false;
+                            break;
+                        }
+                        if (infoSum == 9)
+                        {
+                            system("cls");
+                            std::cout << "Ничья " << std::endl;
+                            std::cout << "Чтобы продолжить нажмите любую кнопку ";
+                            drawPlayer2++;
+                            drawPlayer1++;
+                            scorPlayer2 -= 1.2;
+                            scorPlayer1 -= 1.2;
+                            std::string _a;
+                            std::cin >> _a;
+                            infoSum = 0;
+                            break;
+                        }
+
+                    }
+                    break;
+
+                    break;
+                case 2:
+                    while (game)
+                    {
+                        system("cls");
+                        std::cout << "\x1b[91m+\x1b[0m \x1b[97m| Крестики нолики\n";
+                        for (int i = 0;i < 3; i++) {
+                            for (int j = 0;j < 3; j++) {
+                                std::cout << arrGame[i][j];
+                                if (j <= 1) {
+                                    std::cout << " | ";
+                                }
+                            }
+                            if (i != 2)
+                            {
+                                std::cout << "\n__________" << std::endl;
+                            }
+                        }
+
+                        std::cout << "\n\x1b[91m+\x1b[0m \x1b[97m| Информация\n";
+                        for (int i = 0; i < 9; i++)
+                        {
+                            if (infoGame[i] == "")
+                            {
+                                break;
+                            }
+                            std::cout << infoGame[i] << duble[i] << std::endl;
+                        }
                         int answer;
                         if (count % 2 == 1)
                         {
                             std::cout << "\n\x1b[91m>\x1b[0m | Ходит " << nameplayer1 << " : ";
                             std::cin >> answer;
+                            duble[infoSum] = answer;
+                            infoGame[infoSum] = "\x1b[91m+\x1b[0m " + nameplayer1 + " ход на клетку: ";
+                            infoSum++;
                             answer--;
                             arrGame[answer / 3][answer % 3] = symbPlayer1;
                             count++;
@@ -98,32 +240,85 @@ int main()
                         {
                             std::cout << "\n\x1b[91m>\x1b[0m | Ходит " << nameplayer2 << " : ";
                             std::cin >> answer;
+                            duble[infoSum] = answer;
+                            infoGame[infoSum] = "\x1b[91m+\x1b[0m " + nameplayer2 + " ход на клетку: ";
+                            infoSum++;
                             answer--;
                             arrGame[answer / 3][answer % 3] = symbPlayer2;
                             count++;
                         }
-                        if (CheckWin(arrGame))
+                        for (int i = 0; i < 3; i++)
+                        {
+                            if (arrGame[i][0] == arrGame[i][1] && arrGame[i][1] == arrGame[i][2])
+                            {
+                                win = true;
+                            }
+                            else if (arrGame[0][i] == arrGame[1][i] && arrGame[1][i] == arrGame[2][i])
+                            {
+                                win = true;
+                            }
+                            else if (arrGame[0][0] == arrGame[1][1] && arrGame[2][2] == arrGame[1][1] || arrGame[0][2] == arrGame[1][1] && arrGame[2][0] == arrGame[1][1])
+                            {
+                                win = true;
+                            }
+                        }
+                        if (win)
                         {
                             if (count % 2 == 0)
                             {
-                                std::cout << "Победил " << nameplayer1;
+                                system("cls");
+                                std::cout << "Победил " << nameplayer1 << std::endl;
+                                std::cout << "Чтобы продолжить нажмите любую кнопку ";
+                                winPlayer1++;
+                                losePlayer2++;
+                                scorPlayer1 += 5;
+                                scorPlayer2 -= 6;
+                                std::string _a;
+                                std::cin >> _a;
                             }
                             else
                             {
-                                std::cout << "Победил " << nameplayer2;
+                                system("cls");
+                                std::cout << "Победил " << nameplayer2 << std::endl;
+                                std::cout << "Чтобы продолжить нажмите любую кнопку ";
+                                winPlayer2++;
+                                losePlayer1++;
+                                scorPlayer2 += 5;
+                                scorPlayer1 -= 6;
+                                std::string _a;
+                                std::cin >> _a;
                             }
+                            win = false;
                             break;
                         }
+                        if (infoSum == 9)
+                        {
+                            system("cls");
+                            std::cout << "Ничья " << std::endl;
+                            std::cout << "Чтобы продолжить нажмите любую кнопку ";
+                            drawPlayer2++;
+                            drawPlayer1++;
+                            scorPlayer2 -= 1.2;
+                            scorPlayer1 -= 1.2;
+                            std::string _a;
+                            std::cin >> _a;
+                            infoSum = 0;
+                            break;
+                        }
+
                     }
                     break;
-                case 2:
-                    break;
-
                 }
-
-
                 break;
             case 2:
+                system("cls");
+                std::cout << "\x1b[91m+\x1b[0m \x1b[97m| Статистика\n\n";
+                std::cout << "               W  L  D  |  Очки\n";
+                std::cout << "1 \x1b[91m|\x1b[0m \x1b[97m " << nameplayer1 << "  " << winPlayer1 << "  " << losePlayer1 << "  " << drawPlayer1 << " | " << scorPlayer1 << std::endl;
+                std::cout << "2 \x1b[91m|\x1b[0m \x1b[97m " << nameplayer2 << "  " << winPlayer2 << "  " << losePlayer2 << "  " << drawPlayer2 << " | " << scorPlayer2 << std::endl;
+                std::cout << "0 \x1b[91m|\x1b[0m \x1b[97m Выход: ";
+                std::cin >> a;
+                offMenu = false;
                 break;
             case 3:
                 system("cls");
@@ -141,7 +336,7 @@ int main()
                 while (true) {
                     switch (settings)
                     {
-                    
+
                     case 1:
                         while (offGame == true) {
                             system("cls");
@@ -149,13 +344,13 @@ int main()
 
                             std::cout << "\x1b[91m1\x1b[0m \x1b[97m| Ник    : " << nameplayer1 << std::endl;
                             std::cout << "\x1b[91m2\x1b[0m \x1b[97m| Фигура : " << symbPlayer1 << std::endl;
-                            std::cout << "\x1b[91m3\x1b[0m \x1b[97m| Цвет   : " << colorPlayer1 << std::endl << std::endl;
+                            std::cout << "\x1b[91m3\x1b[0m \x1b[97m| Цвет   : " << color1 << std::endl << std::endl;
                             std::cout << "\x1b[91m4\x1b[0m \x1b[97m| Назад  " << std::endl;
 
                             std::cout << "\x1b[91m>\x1b[0m \x1b[97m| Ввод: \x1b[90m"; std::cin >> change;
                             switch (change)
                             {
-                            
+
                             case 1:
                                 std::cout << "\x1b[91m+\x1b[0m \x1b[97m| Введите новое имя игрока: "; std::cin >> nameplayer1;
 
@@ -165,8 +360,8 @@ int main()
                                 break;
                             case 3:
                                 std::cout << arrColor[0][0] + arrColor[1][0];
-                                colorPlayer1 = arrColor[0][colorCount] + arrColor[1][colorCount];
-
+                                color1 = arrColor[0][colorCount] + arrColor[1][colorCount];
+                                colorPlayer1 = arrColor[0][colorCount];
                                 colorCount++;
                                 if (colorCount == 3) {
                                     colorCount = 0;
@@ -186,7 +381,7 @@ int main()
 
                             std::cout << "\x1b[91m1\x1b[0m \x1b[97m| Ник    : " << nameplayer2 << std::endl;
                             std::cout << "\x1b[91m2\x1b[0m \x1b[97m| Фигура : " << symbPlayer2 << std::endl;
-                            std::cout << "\x1b[91m3\x1b[0m \x1b[97m| Цвет   : " << colorPlayer2 << std::endl << std::endl;
+                            std::cout << "\x1b[91m3\x1b[0m \x1b[97m| Цвет   : " << color2 << std::endl << std::endl;
                             std::cout << "\x1b[91m4\x1b[0m \x1b[97m| Назад  " << std::endl;
 
                             std::cout << "\x1b[91m>\x1b[0m \x1b[97m| Ввод: \x1b[90m"; std::cin >> change;
@@ -203,8 +398,8 @@ int main()
                                 break;
                             case 3:
                                 std::cout << arrColor[0][0] + arrColor[1][0];
-                                colorPlayer2 = arrColor[0][colorCount] + arrColor[1][colorCount];
-
+                                color2 = arrColor[0][colorCount] + arrColor[1][colorCount];
+                                colorPlayer2 = arrColor[0][colorCount];
                                 colorCount++;
                                 if (colorCount == 3) {
                                     colorCount = 0;
