@@ -1,3 +1,5 @@
+
+
 #include <stdlib.h>
 #include <iostream>
 #include <string>
@@ -16,10 +18,11 @@ int main()
     int duble[9];
     bool game = true;
     bool win = false;
+    bool check= true;
     int settings;
     int value;
-    srand(time(0));
-    value = (rand()) % 9;
+    srand(time(NULL));
+    
     int playmenu;
     int change;
     int infoSum = 0;
@@ -117,20 +120,52 @@ int main()
                             std::cout << "\n\x1b[91m>\x1b[0m | Ходит " << nameplayer1 << " : ";
                             std::cin >> answer;
                             duble[infoSum] = answer;
+                            answer--;
+                            check = true;
+                            while (check) {
+                                if (arrGame[answer / 3][answer % 3] == symbPlayer2 || arrGame[answer / 3][answer % 3] == symbPlayer1) {
+                                    infoSum--;
+                                    std::cout << "\n\x1b[91m>\x1b[0m | Неправильное значение, введите снова " << nameplayer1 << " : ";
+                                    std::cout << "\n\x1b[91m>\x1b[0m | Ходит " << nameplayer1 << " : ";
+                                    std::cin >> answer;
+                                    if (answer != 0) {
+                                        answer--;
+                                    }
+
+                                }
+                                else {
+                                    check = false;
+                                }
+                            }
+                            
                             infoGame[infoSum] = "\x1b[91m+\x1b[0m " + nameplayer1 + " ход на клетку: ";
                             infoSum++;
-                            answer--;
+                            
                             arrGame[answer / 3][answer % 3] = symbPlayer1;
                             count++;
                         }
                         else
                         {
-                            std::cout << "\n\x1b[91m>\x1b[0m | Ходит " << nameplayer2 << " : ";
-                            answer = value;
-                            duble[infoSum] = answer;
-                            infoGame[infoSum] = "\x1b[91m+\x1b[0m " + nameplayer2 + " ход на клетку: ";
-                            infoSum++;
+                            std::cout << "\n\x1b[91m>\x1b[0m | Ходит Компьютер : ";
+                            answer = (rand()) % 9;
                             answer--;
+                            check = true;
+                            while (check) {
+                                if (arrGame[answer / 3][answer % 3] == symbPlayer2 || arrGame[answer / 3][answer % 3] == symbPlayer1) {
+                                    answer = (rand()) % 9;
+                                    if (answer != 0) {
+                                        answer--;
+                                    }
+                                   
+                                }
+                                else {
+                                    check = false;
+                                }
+                            }
+                            duble[infoSum] = answer+1;
+                            infoGame[infoSum] = "\x1b[91m+\x1b[0m Компьютер ход на клетку: ";
+                            infoSum++;
+                            
                             arrGame[answer / 3][answer % 3] = symbPlayer2;
                             count++;
                         }
@@ -225,28 +260,67 @@ int main()
                             std::cout << infoGame[i] << duble[i] << std::endl;
                         }
                         int answer;
-                        if (count % 2 == 1)
-                        {
-                            std::cout << "\n\x1b[91m>\x1b[0m | Ходит " << nameplayer1 << " : ";
-                            std::cin >> answer;
-                            duble[infoSum] = answer;
-                            infoGame[infoSum] = "\x1b[91m+\x1b[0m " + nameplayer1 + " ход на клетку: ";
-                            infoSum++;
-                            answer--;
-                            arrGame[answer / 3][answer % 3] = symbPlayer1;
-                            count++;
-                        }
-                        else
-                        {
-                            std::cout << "\n\x1b[91m>\x1b[0m | Ходит " << nameplayer2 << " : ";
-                            std::cin >> answer;
-                            duble[infoSum] = answer;
-                            infoGame[infoSum] = "\x1b[91m+\x1b[0m " + nameplayer2 + " ход на клетку: ";
-                            infoSum++;
-                            answer--;
-                            arrGame[answer / 3][answer % 3] = symbPlayer2;
-                            count++;
-                        }
+                        
+                            if (count % 2 == 1)
+                            {
+                                std::cout << "\n\x1b[91m>\x1b[0m | Ходит " << nameplayer1 << " : ";
+                                std::cout << "\n\x1b[91m>\x1b[0m | Ходит " << nameplayer1 << " : ";
+                                std::cin >> answer;
+                                duble[infoSum] = answer;
+                                answer--;
+                                check = true;
+                                while (check) {
+                                    if (arrGame[answer / 3][answer % 3] == symbPlayer2 || arrGame[answer / 3][answer % 3] == symbPlayer1) {
+                                        infoSum--;
+                                        std::cout << "\n\x1b[91m>\x1b[0m | Неправильное значение, введите снова " << nameplayer1 << " : ";
+                                        std::cout << "\n\x1b[91m>\x1b[0m | Ходит " << nameplayer1 << " : ";
+                                        std::cin >> answer;
+                                        if (answer != 0) {
+                                            answer--;
+                                        }
+
+                                    }
+                                    else {
+                                        check = false;
+                                    }
+                                }
+
+                                infoGame[infoSum] = "\x1b[91m+\x1b[0m " + nameplayer1 + " ход на клетку: ";
+                                infoSum++;
+
+                                arrGame[answer / 3][answer % 3] = symbPlayer1;
+                                count++;
+                            }
+                            else
+                            {
+                                std::cout << "\n\x1b[91m>\x1b[0m | Ходит " << nameplayer2 << " : ";
+                                std::cin >> answer;
+                                duble[infoSum] = answer;
+                                answer--;
+                                check = true;
+                                while (check) {
+                                    if (arrGame[answer / 3][answer % 3] == symbPlayer2 || arrGame[answer / 3][answer % 3] == symbPlayer1) {
+                                        infoSum--;
+                                        std::cout << "\n\x1b[91m>\x1b[0m | Неправильное значение, введите снова " << nameplayer2 << " : ";
+                                        std::cout << "\n\x1b[91m>\x1b[0m | Ходит " << nameplayer2 << " : ";
+                                        std::cin >> answer;
+                                        if (answer != 0) {
+                                            answer--;
+                                        }
+
+                                    }
+                                    else {
+                                        check = false;
+                                    }
+                                }
+
+                                infoGame[infoSum] = "\x1b[91m+\x1b[0m " + nameplayer2 + " ход на клетку: ";
+                                infoSum++;
+
+                                arrGame[answer / 3][answer % 3] = symbPlayer2;
+                                count++;
+                            }
+                        
                         for (int i = 0; i < 3; i++)
                         {
                             if (arrGame[i][0] == arrGame[i][1] && arrGame[i][1] == arrGame[i][2])
@@ -416,7 +490,7 @@ int main()
                 }
 
             case 4:
-
+                system("cls");
 
                 break;
             }
